@@ -24,4 +24,15 @@
         <servlet-name>ForecastServlet</servlet-name>
         <url-pattern>/api/v1/forecast/</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>ru.drondrin.servlet.HomeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern/>
+    </servlet-mapping>
 </web-app>
