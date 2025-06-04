@@ -27,6 +27,22 @@
 
 
     <servlet>
+        <servlet-name>WeatherServlet</servlet-name>
+        <servlet-class>ru.drondrin.servlet.api.WeatherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>WeatherServlet</servlet-name>
+        <url-pattern>/weather/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>WeatherServlet</servlet-name>
+        <url-pattern>/weather</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>ru.drondrin.servlet.HomeServlet</servlet-class>
     </servlet>
