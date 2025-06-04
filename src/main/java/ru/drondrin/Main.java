@@ -1,9 +1,11 @@
 package ru.drondrin;
 
-import ru.drondrin.entity.Forecast;
-import ru.drondrin.entity.Location;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.startup.Tomcat;
 import ru.drondrin.service.LocationService;
 import ru.drondrin.service.ForecastService;
+
+import java.io.File;
 
 public class Main {
     public static final ConfigReader CONFIG = new ConfigReader("src/main/resources/config.properties");
@@ -14,8 +16,19 @@ public class Main {
         locationService = new LocationService();
         forecastService = new ForecastService();
 
-        var moscowLocation = new Location(55.75222, 37.61556);           // грамматика против кода: писать MoscowLoc... или moscowLoc..? =)
-        var forecast = forecastService.getForecast(moscowLocation);
-        System.out.println(forecast);
+        var tomcat = new Tomcat();
+        tomcat.setPort(CONFIG.intProperty("server.port"));
+        tomcat.getConnector().setPort(CONFIG.intProperty("server.port"));
+        tomcat.addWebapp("", new File("src/main/resources/").getAbsolutePath());
+
+        try {
+            tomcat.init();
+            tomcat.start();
+            System.out.println("Tomcat running.");
+            tomcat.getServer().await();
+        } catch (LifecycleException e) {
+            System.err.println("Tomcat failed to initialize.");
+            System.err.println(e.getMessage());
+        }
     }
 }
