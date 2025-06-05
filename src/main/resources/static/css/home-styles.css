@@ -1,0 +1,233 @@
+@import "common-styles.css";
+
+.main {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.location {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map {
+    position: relative;
+}
+
+.map__hovers {
+    width: 100%;
+    height: 100%;
+    background-color: var(--c1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    mask-image: url("../images/world-map.svg");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    user-select: none;
+}
+
+.map__dots {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.map__hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250vw;
+    height: 250vw;
+    background: radial-gradient(var(--c3), var(--c2) 15%, #3c0000 40%) center center no-repeat;
+    transform: translateX(-50%) translateY(-50%);
+    transition: opacity 1s;
+}
+
+.location_hidden .map__hover {
+    opacity: 0;
+}
+
+.location_scan .map__scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 35%, var(--c5), transparent 65%);
+}
+
+@property --dotColor {
+    syntax: '<color>';
+    initial-value: red;
+    inherits: false;
+}
+
+.map__dot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 1vw;
+    height: 1vw;
+    border-radius: 999px;
+    background-color: var(--dotColor);
+    cursor: pointer;
+    transition: --dotColor 0.1s, opacity 0.2s;
+}
+
+.map__dot.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.map__dot_active {
+    --dotColor: #ffa600;
+}
+
+.map__dot_hover {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vw;
+    border-radius: 999px;
+    background: radial-gradient(var(--dotColor), transparent 5%) center center no-repeat;
+    transition: --dotColor 0.3s, width 1s, height 1s, opacity 0.2s;
+}
+
+.map__dot_hover.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.map__dot_hover_active {
+    --dotColor: #ffa600;
+    width: 300vw;
+    height: 300vw;
+}
+
+.search-window {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 1s;
+}
+
+.search-window.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.search-window__header {
+    font-size: 50pt;
+    color: var(--c3);
+}
+
+.search-window__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-window__form {
+    position: relative;
+}
+
+.search-window__input {
+    background-color: rgba(14, 38, 75, 0.56);
+    border-radius: 30px;
+    border: none;
+    font-size: 30pt;
+    padding: 10px 20px;
+    text-align: center;
+    color: var(--c4);
+    font-family: edu, serif;
+}
+
+.search-window__input::placeholder {
+    color: var(--c3);
+}
+
+.search-window__input:focus {
+    outline: none;
+}
+
+.search-window__input_invalid {
+    animation-name: search-window-input-invalid;
+    animation-duration: 0.2s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes search-window-input-invalid {
+    0% {
+        background-color: rgba(14, 38, 75, 0.56);
+    }
+
+    50% {
+        background-color: rgba(115, 16, 16, 0.56);
+    }
+
+    100% {
+        background-color: rgba(14, 38, 75, 0.56);
+    }
+}
+
+.search-window__submit {
+    position: absolute;
+    left: calc(100% + 40px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.search-window__submit:hover {
+    text-shadow: var(--c5) 0 0 20px;
+}
+
+.search-window__submit.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.main__glass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.main__glass.hidden {
+    display: none;
+}

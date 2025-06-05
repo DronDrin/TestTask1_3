@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'edu';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/EduSAHand/regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'edu';
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/EduSAHand/medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'edu';
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/EduSAHand/semibold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'edu';
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/EduSAHand/bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'inco';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/Inconsolata/regular.ttf") format("truetype");
+}
+
+:root {
+    --c1: #000000;
+    --c2: #0e264b;
+    --c3: #38579e;
+    --c4: #718ffd;
+    --c5: #b7caff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--c1);
+    color: var(--c3);
+    font-family: 'edu', serif;
+}
+
+.button {
+    font-size: 25px;
+    padding: 7px 15px;
+    border-radius: 3px;
+    border: 2px var(--c3) solid;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+    text-align: center;
+    box-shadow: 0 15px 20px var(--c2);
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
