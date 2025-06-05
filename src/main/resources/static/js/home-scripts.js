@@ -297,8 +297,8 @@ function addPoint(x, y) {
         point.toolTip.style.bottom = 'unset';
 
         if (toolTilRect.right > window.innerWidth) {
-            point.toolTip.style.left = '0';
-            point.toolTip.style.right = 'unset';
+            point.toolTip.style.right = '0';
+            point.toolTip.style.left = 'unset';
         }
 
         if (toolTilRect.bottom > window.innerHeight) {
