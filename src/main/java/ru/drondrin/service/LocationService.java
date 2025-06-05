@@ -21,12 +21,14 @@ public class LocationService {
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
         var inputStream = connection.getInputStream();
-        List<Location> locations = new ArrayList<>();
+        List<Location> locations;
         var res = jsonMapper.readTree(inputStream);
         if (res.get("results") == null)
             return new ArrayList<>();
-        res.get("results").elements().forEachRemaining(cityInfo ->
-                locations.add(new Location(cityInfo.get("latitude").asDouble(), cityInfo.get("longitude").asDouble())));
+        locations = res.get("results").valueStream().map(cityInfo ->
+                new Location(cityInfo.get("latitude").asDouble(), cityInfo.get("longitude").asDouble()))
+                .filter(Location::isValid)
+                .toList();
         inputStream.close();
         connection.disconnect();
         return locations;
