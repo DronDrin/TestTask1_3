@@ -1,0 +1,137 @@
+@import "common-styles.css";
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+    height: 100vh;
+}
+
+.main__top {
+    flex: 0 0 20%;
+}
+
+.main__header, .main__location {
+}
+
+.weather-graph__outline {
+    border: 4px var(--c3) solid;
+    width: min-content;
+    height: min-content;
+}
+
+.weather-graph {
+    cursor: pointer;
+    height: 400px;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-graph_dragging {
+    cursor: grab;
+}
+
+.weather-graph__body {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.weather-graph__plot {
+}
+
+.weather-graph__canvas {
+}
+
+.weather-graph__selector-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    border: 4px #10a873 dashed;
+    pointer-events: none;
+    user-select: none;
+    width: 23px;
+    height: 23px;
+
+    animation-name: selector-dot;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes selector-dot {
+    0% {
+        transform: translateX(-50%) translateY(-50%) rotateZ(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-50%) rotateZ(180deg);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-50%) rotateZ(360deg);
+    }
+}
+
+.weather-graph__selector-dot.hidden {
+    opacity: 0;
+}
+
+.weather-graph__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    user-select: none;
+    pointer-events: none;
+    font-size: 20px;
+    color: #10a873;
+    transform: translateX(-50%) translateY(40%);
+    font-weight: 800;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.weather-graph__label.hidden {
+    opacity: 0;
+}
+
+.weather-graph__captions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    background-color: black;
+}
+
+.weather-graph__caption {
+    font-size: 12px;
+    color: var(--c5);
+    transform: translateY(-50%);
+    position: absolute;
+    text-align: center;
+    left: 5px;
+}
+
+.weather-graph__times {
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 25px;
+}
+
+.weather-graph__time {
+    font-size: 12px;
+    color: var(--c5);
+    position: absolute;
+    text-align: center;
+    top: 3px;
+    transform: translateX(-50%);
+}

@@ -120,7 +120,7 @@ window.addEventListener('load', () => {
 });
 
 function pointClicked(point) {
-    console.log(point.lat, point.lon);
+    location.href = `/weather/?lat=${point.lat}&lon=${point.lon}&address=${point.names.join(', ').replaceAll(' ', '+')}`;
 }
 
 
@@ -250,6 +250,7 @@ function addScanPoint(jsonPoint) {
 }
 
 function addGeoPoint(lat, lon) {
+    const realLat = lat, realLon = lon;
     lat = Math.log(Math.tan(Math.PI / 4 + ((lat + 1.7) * Math.PI / 180) / 2));
     const latMax = Math.log(Math.tan(Math.PI / 4 + (84.3 * Math.PI / 180) / 2));
     const latMin = Math.log(Math.tan(Math.PI / 4 + (-58 * Math.PI / 180) / 2));
@@ -261,8 +262,8 @@ function addGeoPoint(lat, lon) {
     lon -= 7.3;
 
     let point = addPoint(lon / 360, ((latMax - lat) / (latMax - latMin)));
-    point.lat = lat;
-    point.lon = lon;
+    point.lat = realLat;
+    point.lon = realLon;
     return point;
 }
 
