@@ -18,6 +18,7 @@ public class LocationServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
+        query = query.replace(' ', '+');
         resp.setContentType("application/json");
         var jsonGenerator = new ObjectMapper().createGenerator(resp.getOutputStream());
         jsonGenerator.writeObject(locationService.getLocations(query));
