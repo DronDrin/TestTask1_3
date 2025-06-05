@@ -231,3 +231,39 @@
 .main__glass.hidden {
     display: none;
 }
+
+
+.main__try-again {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 30px;
+    user-select: none;
+    cursor: pointer;
+    color: var(--c4);
+    opacity: 0;
+    font-weight: 600;
+}
+
+.main__try-again.show {
+    opacity: 1;
+    animation-name: try-again-button-showup;
+    animation-duration: 0.3s;
+    animation-iteration-count: 12;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes try-again-button-showup {
+    0% {
+        color: var(--c2);
+    }
+
+    50% {
+        color: var(--c4);
+        text-shadow: var(--c4) 0 0 40px;
+    }
+
+    100% {
+        color: var(--c2);
+    }
+}

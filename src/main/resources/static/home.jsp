@@ -28,6 +28,9 @@
             </div>
         </div>
     </div>
+    <div class="main__try-again" id="tryAgainButton" role="button">
+        Try again
+    </div>
 </main>
 </body>
 </html>

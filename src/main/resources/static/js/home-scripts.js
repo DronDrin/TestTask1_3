@@ -1,5 +1,5 @@
 let mapHover, mapHovers, mapDots, map, locationWindow,
-    scanLineEl, searchInput, searchButton, searchWindow, mapBlocker;
+    scanLineEl, searchInput, searchButton, searchWindow, mapBlocker, tryAgainButton;
 let points = [];
 let mapScale = 1;
 let renderMapScale = 1;
@@ -38,6 +38,7 @@ window.addEventListener('load', () => {
     searchButton = document.getElementById('searchButton');
     searchWindow = document.getElementById('searchWindow');
     mapBlocker = document.getElementById('mapBlocker');
+    tryAgainButton = document.getElementById('tryAgainButton');
 
     resize();
 
@@ -96,6 +97,9 @@ window.addEventListener('load', () => {
             runDisplayPoints(() => {
                 scalingMode = true;
                 addClass(mapBlocker, 'hidden');
+                setTimeout(() => {
+                    addClass(tryAgainButton, 'show');
+                }, 500);
             });
             fetch('/api/v1/location/?query=' + query).then(res => res.json().then(json => {
                 for (const point of json) {
@@ -108,6 +112,10 @@ window.addEventListener('load', () => {
             searchInput.style.animation = 'none';
             setTimeout(() => searchInput.style.animation = null, 10);
         }
+    });
+
+    tryAgainButton.addEventListener('click', () => {
+        location.reload();
     });
 });
 
