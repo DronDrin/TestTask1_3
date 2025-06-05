@@ -145,7 +145,14 @@ class Graph {
     }
 
     getHourString(hour) {
-        return `${hour < 10 ? '0' : ''}${hour}:00`;
+        let timezoneOffset = -new Date().getTimezoneOffset();
+        hour += Math.floor(timezoneOffset / 60);
+        let minute = timezoneOffset % 60;
+        while (hour < 0)
+            hour += 24;
+        while (hour >= 24)
+            hour -= 24;
+        return `${hour < 10 ? '0' : ''}${hour}:${minute < 10 ? '0' : ''}${minute}`;
     }
 
     drawGrid() {
