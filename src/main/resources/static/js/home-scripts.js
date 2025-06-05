@@ -114,6 +114,12 @@ window.addEventListener('load', () => {
         }
     });
 
+    searchInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+            searchButton.click();
+        }
+    })
+
     tryAgainButton.addEventListener('click', () => {
         location.reload();
     });
