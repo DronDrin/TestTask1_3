@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
 
     window.addEventListener('resize', resize);
 
-    locationWindow.addEventListener('mousemove', e => {
+    window.addEventListener('mousemove', e => {
         let rect = mapHovers.getBoundingClientRect();
 
         mapHover.style.left = (e.clientX - rect.x) / rect.width * 100 + '%';
