@@ -17,6 +17,7 @@
 </head>
 <body>
 <main class="main">
+    <a href="${pageContext.request.contextPath}/" class="main__another-city" id="anotherCityButton">Choose another city</a>
     <div class="main__top">
         <h1 class="main__header">Weather forecast</h1>
         <h2 class="main__location"><%

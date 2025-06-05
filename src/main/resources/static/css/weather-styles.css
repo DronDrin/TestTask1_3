@@ -9,6 +9,26 @@
     height: 100vh;
 }
 
+.main__another-city {
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    user-select: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--c3);
+    text-decoration: none;
+}
+
+.main__another-city:visited {
+    color: var(--c3);
+}
+
+.main__another-city:hover {
+    text-decoration: underline;
+}
+
 .main__top {
     flex: 0 0 20%;
 }
