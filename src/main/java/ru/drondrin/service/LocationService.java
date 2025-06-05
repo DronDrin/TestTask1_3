@@ -25,8 +25,7 @@ public class LocationService {
         var res = jsonMapper.readTree(inputStream);
         if (res.get("results") == null)
             return new ArrayList<>();
-        locations = res.get("results").valueStream().map(cityInfo ->
-                new Location(cityInfo.get("latitude").asDouble(), cityInfo.get("longitude").asDouble()))
+        locations = res.get("results").valueStream().map(Location::create)
                 .filter(Location::isValid)
                 .toList();
         inputStream.close();

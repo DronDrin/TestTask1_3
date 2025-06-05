@@ -89,6 +89,7 @@
     background-color: var(--dotColor);
     cursor: pointer;
     transition: --dotColor 0.1s, opacity 0.2s;
+    z-index: 6;
 }
 
 .map__dot.hidden {
@@ -119,6 +120,36 @@
     --dotColor: #ffa600;
     width: 300vw;
     height: 300vw;
+}
+
+.map__dot-tooltip {
+    pointer-events: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.95);
+    transition: 0.2s;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    max-width: 300px;
+    position: absolute;
+    z-index: 1;
+}
+
+.map__dot:hover {
+    z-index: 10;
+}
+
+.map__dot:hover .map__dot-tooltip {
+    opacity: 1;
+    z-index: 10;
+}
+
+.map__dot-tooltip-item {
+    font-size: 16pt;
+    text-align: center;
+    font-weight: 600;
 }
 
 .search-window {

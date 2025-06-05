@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import ru.drondrin.entity.Location;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.lang.Double.parseDouble;
 import static ru.drondrin.Main.forecastService;

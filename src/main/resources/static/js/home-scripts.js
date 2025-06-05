@@ -103,7 +103,7 @@ window.addEventListener('load', () => {
             });
             fetch('/api/v1/location/?query=' + query).then(res => res.json().then(json => {
                 for (const point of json) {
-                    addScanPoint(point.lat, point.lon);
+                    addScanPoint(point);
                 }
                 scanPointsLoaded = true;
             }));
@@ -230,10 +230,23 @@ function scanLineTick() {
     }
 }
 
-function addScanPoint(lat, lon) {
-    let point = addGeoPoint(lat, lon);
+function addScanPoint(jsonPoint) {
+    let point = addGeoPoint(jsonPoint.lat, jsonPoint.lon);
     point.dot.classList.add('hidden');
     point.hover.classList.add('hidden');
+    point.names = jsonPoint.names;
+
+    const toolTip = document.createElement('div');
+    addClass(toolTip, 'map__dot-tooltip');
+    point.dot.appendChild(toolTip);
+    point.toolTip = toolTip;
+
+    point.names.forEach(name => {
+        const toolTipItem = document.createElement('div');
+        addClass(toolTipItem, 'map__dot-tooltip-item');
+        toolTip.appendChild(toolTipItem);
+        toolTipItem.innerText = name;
+    })
 }
 
 function addGeoPoint(lat, lon) {
@@ -277,6 +290,21 @@ function addPoint(x, y) {
     point.dot.addEventListener('mouseover', () => {
         addClass(point.dot, 'map__dot_active');
         addClass(point.hover, 'map__dot_hover_active');
+        let toolTilRect = point.toolTip.getBoundingClientRect();
+        point.toolTip.style.right = 'unset';
+        point.toolTip.style.left = '0';
+        point.toolTip.style.top = '150%';
+        point.toolTip.style.bottom = 'unset';
+
+        if (toolTilRect.right > window.innerWidth) {
+            point.toolTip.style.left = '0';
+            point.toolTip.style.right = 'unset';
+        }
+
+        if (toolTilRect.bottom > window.innerHeight) {
+            point.toolTip.style.bottom = '150%';
+            point.toolTip.style.top = 'unset';
+        }
     });
 
     point.dot.addEventListener('mouseleave', () => {
