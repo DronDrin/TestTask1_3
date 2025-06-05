@@ -1,5 +1,6 @@
 package ru.drondrin.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import ru.drondrin.entity.Location;
@@ -21,7 +22,10 @@ public class LocationService {
         connection.setRequestProperty("Accept", "application/json");
         var inputStream = connection.getInputStream();
         List<Location> locations = new ArrayList<>();
-        jsonMapper.readTree(inputStream).get("results").elements().forEachRemaining(cityInfo ->
+        var res = jsonMapper.readTree(inputStream);
+        if (res.get("results") == null)
+            return new ArrayList<>();
+        res.get("results").elements().forEachRemaining(cityInfo ->
                 locations.add(new Location(cityInfo.get("latitude").asDouble(), cityInfo.get("longitude").asDouble())));
         inputStream.close();
         connection.disconnect();
