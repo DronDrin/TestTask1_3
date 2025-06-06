@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public record Location(double lat, double lon, List<String> names) {
     public boolean isValid() {
@@ -37,5 +38,16 @@ public record Location(double lat, double lon, List<String> names) {
             if (node != null)
                 names.add(node.asText());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Location location)) return false;
+        return Double.compare(lat, location.lat) == 0 && Double.compare(lon, location.lon) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lat, lon);
     }
 }
